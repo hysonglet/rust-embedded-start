@@ -1,0 +1,5 @@
+[book]
+authors = ["hunter"]
+language = "en"
+multilingual = false
+src = "src"

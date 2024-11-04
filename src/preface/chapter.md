@@ -1,7 +1,7 @@
 
 # 前言
 
-## [C 嵌入式转 Rust 嵌入式需要面对的新概念](./new_concept.md)
+## [嵌入式 C 转 Rust 需要面对的新概念](./new_concept.md)
 
 ## [Rust 嵌入式学习会遇到的挑战](./challenge.md)
 

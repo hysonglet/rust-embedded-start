@@ -10,3 +10,5 @@
 - [Rust 嵌入式开发](./develop/chapter.md)
 - [参考](./reference/chapter.md)
 - [附录](./appendix/chapter.md)
+	- [附录](./appendix/chapter.md)
+	- [todo](./appendix/todo.md)

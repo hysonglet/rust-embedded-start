@@ -8,6 +8,8 @@
     - [Rust 嵌入式的优势](./preface/advantage.md)
 - [环境](./environment/chapter.md)
 - [Rust 嵌入式开发](./develop/chapter.md)
+	- [ Rust 嵌入式开发](./develop/chapter.md)
+		- [快速体验](./develop/fast_start.md)
 - [参考](./reference/chapter.md)
 - [附录](./appendix/chapter.md)
 	- [附录](./appendix/chapter.md)

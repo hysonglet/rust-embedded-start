@@ -36,6 +36,9 @@ Rust 的基本语法的入门并不难，如常见的基础变量定义、表达
 
 ## 附录
 [svd2rust](https://crates.io/crates/svd2rust)
+
 [awesome-embedded-rust](https://github.com/rust-embedded/awesome-embedded-rust)
-[cortex_m_quickstart](https://docs.rs/cortex-m-quickstart/0.3.1/cortex_m_quickstart/)
-[Embedded Rust on Espressif](https://docs.esp-rs.org/std-training/)
+
+[cortex_m_quickstart](https://docs.rs/cortex-m-quickstart/0.3.1/cortex_m_quickstart)
+
+[Embedded Rust on Espressif](https://docs.esp-rs.org/std-training)

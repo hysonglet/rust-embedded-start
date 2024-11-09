@@ -7,6 +7,7 @@
     - [Rust 嵌入式与 C/C++ 嵌入式的比较](./preface/compare.md)
     - [Rust 嵌入式的优势](./preface/advantage.md)
 - [环境](./environment/chapter.md)
+- [常用工具](./daily_tools/chapter.md)
 - [Cargo](./todo.md)
 - [Rust 语法](./todo.md)
     - [数据类型](./todo.md)

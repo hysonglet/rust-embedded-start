@@ -36,7 +36,7 @@ cargo r
 # 以 release 模式运行
 cargo r --release
 # 运行 例程
-cargo r --example blinky -release
+cargo r --example blinky --release
 ```
 
 ## GDB

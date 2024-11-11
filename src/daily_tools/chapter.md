@@ -4,6 +4,7 @@
 ## Cargo
 
 ### 检查
+
 只检查 crate 语法，不编译，通常用来节省时间
 ```
 cargo check
@@ -12,6 +13,7 @@ cargo c
 ```
 
 ### 编译
+
 编译 crate 或 指定的例程目标
 ``` bash
 # 编译当前 crate
@@ -27,6 +29,7 @@ cargo b --example XX --feature FFF
 ```
 
 ### 下载 & 运行
+
 下载 elf 固件到芯片并运行，probe-rs 会实时打印来自单片机的日志
 ``` bash
 # 下载并运行
@@ -40,6 +43,7 @@ cargo r --example blinky --release
 ```
 
 ## GDB
+
 用来调试单片机，查看或修改芯片内部数据
 TODO
 ``` bash
@@ -47,6 +51,7 @@ ext 3333
 ```
 
 ## Probe-rs
+
 ### 查看支持的芯片清单
 
 ### 烧录
@@ -54,6 +59,7 @@ ext 3333
 ### 重启设备
 
 ### 临时探测日志
+
 TODO
 ``` bash
 probe-rs attach 
@@ -65,8 +71,8 @@ probe-rs attach
 
 ## 串口烧录
 
-
 ## 附录
+
 - [The Cargo Book](https://doc.rust-lang.org/cargo/index.html)
 
 - [About probe-rs](https://probe.rs/docs/overview/about-probe-rs/)

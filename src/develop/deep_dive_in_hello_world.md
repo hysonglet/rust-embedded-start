@@ -129,6 +129,10 @@ MEMORY
   RAM : ORIGIN = 0x20000000, LENGTH = 8K
 }
 ```
+
+在  `memory.x` 脚本中可以看到，
+- Flash 的起始地址：0x08000000， 大小为 64K
+- RAM 的起始地址：0x20000000， 大小为 8K
 ### src
 
 `src` 目录为该库的源文件，通常在单片机外设库中，每个外设作为一个单独的模块。模块的根节点在 lib.rs 中，模块名即为包名，也就是 `py32f030_hal`。
@@ -154,15 +158,20 @@ hello-world.rs 代码如下：
 #![no_main]
 
 use py32f030_hal as _;
-
-// use panic_halt as _;
 use {defmt_rtt as _, panic_probe as _};
 
 #[cortex_m_rt::entry]
-fn main() -> ! {
+fn main_fun() -> ! {
     defmt::info!("hello world");
     loop {
         cortex_m::asm::wfe();
     }
 }
+
 ```
+
+文件的 前行代码是 Rust 语言的属性宏，用于指定编译时的特定行为。感叹号 ！代表该属性在整个  crate 生效。
+- `#![no_std]`:  这个属性宏告诉 Rust 编译器在编译目标程序时不使用标准库（`std`）。标准库提供了很多常用的功能，比如文件I/O、错误处理、集合类型等。不使用标准库通常意味着你需要自己提供这些功能，或者使用其他库来替代。
+- `#![no_main]`:  这个属性宏告诉 Rust 编译器不自动生成 `main` 函数。在 Rust 中，`main` 函数是程序的入口点。如果你不使用这个属性宏，编译器会自动寻找一个返回 `()` 类型的 `main` 函数。如果你使用了这个属性宏，你需要自己提供一个 `#[entry]` 属性的函数作为程序的入口点。也就是说，应用程序的入口函数名可以不为 `main`！
+
+第4行 `use py32f030_hal as _;` 引用入本 py32f030_hal.  

@@ -175,3 +175,167 @@ fn main_fun() -> ! {
 - `#![no_main]`:  这个属性宏告诉 Rust 编译器不自动生成 `main` 函数。在 Rust 中，`main` 函数是程序的入口点。如果你不使用这个属性宏，编译器会自动寻找一个返回 `()` 类型的 `main` 函数。如果你使用了这个属性宏，你需要自己提供一个 `#[entry]` 属性的函数作为程序的入口点。也就是说，应用程序的入口函数名可以不为 `main`！
 
 第4行 `use py32f030_hal as _;` 引用入本 py32f030_hal.  
+第5行引入 `defmt_rtt` 和 `panic_probe`。
+
+第6行 `#[cortex_m_rt::entry]` 的属性宏将告诉编译起后面的函数名将作为程序入口。
+
+第8行 `fn main_fun() -> !`, `!`表明函数 main_fun 将永不返回。这样设计避免编译检查警告。
+
+第9 行 `defmt::info!("hello world");` 该语句将会在终端中打印字符串。然后系统进入停止模式。
+
+## 编译
+通过命令：`cargo b --example hello_world` 编译程序。首次编译可能耗时较长。
+``` text
+➜  py32f030-hal git:(main) ✗ cargo b --example hello_world
+warning: unused manifest key: dependencies.embedded-io-async.option
+   Compiling proc-macro2 v1.0.85
+   Compiling unicode-ident v1.0.12
+   Compiling version_check v0.9.4
+   Compiling syn v1.0.109
+   Compiling semver-parser v0.7.0
+   Compiling nb v1.1.0
+   Compiling cortex-m v0.7.7
+   Compiling void v1.0.2
+   Compiling nb v0.1.3
+   Compiling thiserror v1.0.61
+   Compiling critical-section v1.1.2
+   Compiling embedded-hal v0.2.7
+   Compiling semver v1.0.23
+   Compiling semver v0.9.0
+   Compiling defmt v0.3.8
+   Compiling rustc_version v0.2.3
+   Compiling proc-macro-error-attr v1.0.4
+   Compiling proc-macro-error v1.0.4
+   Compiling autocfg v1.3.0
+   Compiling bare-metal v0.2.5
+   Compiling num-traits v0.2.19
+   Compiling ident_case v1.0.1
+   Compiling byteorder v1.5.0
+   Compiling vcell v0.1.3
+   Compiling fnv v1.0.7
+   Compiling defmt-macros v0.3.9
+   Compiling az v1.2.1
+   Compiling volatile-register v0.2.2
+   Compiling quote v1.0.36
+   Compiling syn v2.0.66
+   Compiling bitfield v0.13.2
+   Compiling cortex-m-rt v0.7.3
+   Compiling atomic-polyfill v1.0.3
+   Compiling rustc_version v0.4.0
+   Compiling bitflags v1.3.2
+   Compiling panic-probe v0.3.2
+   Compiling defmt-rtt v0.4.1
+   Compiling ssd1309 v0.3.0
+   Compiling heapless v0.7.17
+   Compiling PY32f030xx-pac v0.1.0
+   Compiling display-interface v0.4.1
+   Compiling embedded-io-async v0.6.1
+   Compiling embedded-hal-async v1.0.0
+   Compiling embassy-hal-internal v0.1.0
+   Compiling gcd v2.3.0
+   Compiling fugit v0.3.7
+   Compiling embedded-graphics-core v0.3.3
+   Compiling float-cmp v0.8.0
+   Compiling darling_core v0.20.9
+   Compiling hash32 v0.2.1
+   Compiling micromath v1.1.1
+   Compiling stable_deref_trait v1.2.0
+   Compiling embedded-hal v1.0.0
+   Compiling embedded-io v0.6.1
+   Compiling embedded-graphics v0.7.1
+   Compiling fugit-timer v0.1.3
+   Compiling display-interface-i2c v0.4.0
+   Compiling embassy-futures v0.1.1
+   Compiling panic-halt v0.2.0
+   Compiling bare-metal v1.0.0
+   Compiling cast v0.3.0
+   Compiling drop-move v0.1.0
+   Compiling cortex-m-rt-macros v0.7.0
+   Compiling thiserror-impl v1.0.61
+   Compiling darling_macro v0.20.9
+   Compiling darling v0.20.9
+   Compiling enumset_derive v0.10.0
+   Compiling enumset v1.1.5
+   Compiling defmt-parser v0.3.4
+   Compiling py32f030_hal v0.1.0 (/Users/hunter/mywork/py32/py32f030-hal)
+    Finished `dev` profile [optimized + debuginfo] target(s) in 38.96s
+```
+
+编译完成后生成的 elf 文件路径为：
+- Debug模式: `target/thumbv6m-none-eabi/debug/examples/hello_world`
+
+- Release模式：`target/thumbv6m-none-eabi/debug/examples/hello_world`
+
+常使用size 命令查看 flash 和 ram 占用情况。
+```
+arm-none-eabi-size target/thumbv6m-none-eabi/debug/examples/hello_world 
+   text    data     bss     dec     hex filename
+   6344      56    1032    7432    1d08 target/thumbv6m-none-eabi/debug/examples/hello_world
+```
+在默认情况下，Debug 模式可能会占用较多的空间，但通常在 Release 模式下，则会减少很多。由于目前使用了 `defmt` 作为打印接口，因此会占用较多资源，如果资源限制，可选用其他占用较少的 crate。
+
+## 查看汇编
+
+elf 文件转汇编语言通过命令：
+`arm-none-eabi-objdump -d target/thumbv6m-none-eabi/debug/examples/hello_world > debug.asm` 
+
+``` asm
+target/thumbv6m-none-eabi/debug/examples/hello_world:     file format elf32-littlearm
+
+
+Disassembly of section .text:
+
+080000bc <Reset>:
+ 80000bc:	f000 fe25 	bl	8000d0a <DefaultPreInit>
+ 80000c0:	4808      	ldr	r0, [pc, #32]	; (80000e4 <Reset+0x28>)
+ 80000c2:	4909      	ldr	r1, [pc, #36]	; (80000e8 <Reset+0x2c>)
+ 80000c4:	2200      	movs	r2, #0
+ 80000c6:	4281      	cmp	r1, r0
+ 80000c8:	d001      	beq.n	80000ce <Reset+0x12>
+ 80000ca:	c004      	stmia	r0!, {r2}
+ 80000cc:	e7fb      	b.n	80000c6 <Reset+0xa>
+ 80000ce:	4807      	ldr	r0, [pc, #28]	; (80000ec <Reset+0x30>)
+ 80000d0:	4907      	ldr	r1, [pc, #28]	; (80000f0 <Reset+0x34>)
+ 80000d2:	4a08      	ldr	r2, [pc, #32]	; (80000f4 <Reset+0x38>)
+ 80000d4:	4281      	cmp	r1, r0
+ 80000d6:	d002      	beq.n	80000de <Reset+0x22>
+ 80000d8:	ca08      	ldmia	r2!, {r3}
+ 80000da:	c008      	stmia	r0!, {r3}
+ 80000dc:	e7fa      	b.n	80000d4 <Reset+0x18>
+ 80000de:	f000 f895 	bl	800020c <main>
+ 80000e2:	de00      	udf	#0
+ 80000e4:	20000038 	.word	0x20000038
+ 80000e8:	20000040 	.word	0x20000040
+ 80000ec:	20000000 	.word	0x20000000
+ 80000f0:	20000038 	.word	0x20000038
+ 80000f4:	080018c8 	.word	0x080018c8
+
+...
+
+0800020c <main>:
+ 800020c:	b580      	push	{r7, lr}
+ 800020e:	af00      	add	r7, sp, #0
+ 8000210:	f000 f800 	bl	8000214 <_ZN11hello_world22__cortex_m_rt_main_fun17h27b2c8ae827133dbE>
+
+08000214 <_ZN11hello_world22__cortex_m_rt_main_fun17h27b2c8ae827133dbE>:
+ 8000214:	b580      	push	{r7, lr}
+ 8000216:	af00      	add	r7, sp, #0
+ 8000218:	f000 febe 	bl	8000f98 <_defmt_acquire>
+ 800021c:	4803      	ldr	r0, [pc, #12]	; (800022c <_ZN11hello_world22__cortex_m_rt_main_fun17h27b2c8ae827133dbE+0x18>)
+ 800021e:	f000 fddc 	bl	8000dda <_ZN5defmt6export6header17hdbd91843ccf33f48E>
+ 8000222:	f000 fee5 	bl	8000ff0 <_defmt_release>
+ 8000226:	bf20      	wfe
+ 8000228:	e7fd      	b.n	8000226 <_ZN11hello_world22__cortex_m_rt_main_fun17h27b2c8ae827133dbE+0x12>
+ 800022a:	46c0      	nop			; (mov r8, r8)
+ 800022c:	00000003 	.word	0x00000003    
+
+...     
+
+```
+
+细心的读者可以看到汇编的 main 函数里面最终调用了函数 `_ZN11hello_world22__cortex_m_rt_main_fun17h27b2c8ae827133dbE`, 与我们定义的
+```
+#[cortex_m_rt::entry]
+fn main_fun() -> ! 
+```
+非常相似。具体原因，将在下节展开。

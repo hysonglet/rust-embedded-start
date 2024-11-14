@@ -1,5 +1,5 @@
 
-# 深入理解 hello world 例程
+# 深入理解 hello world 例程——基于 hal 库
 
 ## 工程解说
 `py32f030-hal` crate 为 py32f030 芯片的外设支持库, 提供基本的外设访问接口。
@@ -338,4 +338,74 @@ Disassembly of section .text:
 #[cortex_m_rt::entry]
 fn main_fun() -> ! 
 ```
-非常相似。具体原因，将在下节展开。
+
+Rust 源码编译后的函数和变量符号变化规律与C++相似，变量在编译后的名字通常按照一定规律进行 manging（名字改编），确保在链接阶段能够正确识别和处理符号，因此模板变量、不同作用域的变量可以允许相同名字。
+
+如果在编写代码时为避免函数名被重命名，可以使用属性`#[no_mangle]`标记避免重命名。通常在以下场景被使用：
+- 其他语言绑定，如调用C的函数或变量, 确保接口兼容
+- 提供接口给其他语言，如汇编等
+- 动态库开发
+
+## 查看符号信息
+
+通常使用 arm-none-eabi-readelf 命令查看编译后的固件的指令格式，大小端，CPU架构，段信息，如中断向量表的偏移、各信息段的大小，方便了解固件各段的具体大小，为优化固件大小提供重要信息。
+
+```
+➜  py32f030-hal git:(main) ✗ arm-none-eabi-readelf target/thumbv6m-none-eabi/debug/examples/hello_world -A
+Attribute Section: aeabi
+File Attributes
+  Tag_conformance: "2.09"
+  Tag_CPU_arch: v6S-M
+  Tag_CPU_arch_profile: Microcontroller
+  Tag_ARM_ISA_use: No
+  Tag_THUMB_ISA_use: Thumb-1
+  Tag_ABI_PCS_R9_use: V6
+  Tag_ABI_PCS_GOT_use: direct
+  Tag_ABI_FP_denormal: Needed
+  Tag_ABI_FP_exceptions: Needed
+  Tag_ABI_FP_number_model: IEEE 754
+  Tag_ABI_align_needed: 8-byte
+  Tag_ABI_align_preserved: 8-byte, except leaf SP
+  Tag_CPU_unaligned_access: None
+  Tag_ABI_FP_16bit_format: IEEE 754
+```
+
+```
+➜  py32f030-hal git:(main) ✗ arm-none-eabi-readelf target/thumbv6m-none-eabi/debug/examples/hello_world -S
+There are 22 section headers, starting at offset 0x5ef20:
+
+Section Headers:
+  [Nr] Name              Type            Addr     Off    Size   ES Flg Lk Inf Al
+  [ 0]                   NULL            00000000 000000 000000 00      0   0  0
+  [ 1] .vector_table     PROGBITS        08000000 010000 0000bc 00   A  0   0  4
+  [ 2] .text             PROGBITS        080000bc 0100bc 001d98 00  AX  0   0  4
+  [ 3] .rodata           PROGBITS        08001e54 011e54 000738 00  AM  0   0  4
+  [ 4] .data             PROGBITS        20000000 020000 000040 00  WA  0   0  8
+  [ 5] .gnu.sgstubs      PROGBITS        080025e0 020040 000000 08   A  0   0 32
+  [ 6] .bss              NOBITS          20000040 020040 000140 00  WA  0   0  8
+  [ 7] .uninit           NOBITS          20000180 020040 000400 00  WA  0   0  4
+  [ 8] .defmt            PROGBITS        00000000 020040 000006 00      0   0  1
+  [ 9] .debug_loc        PROGBITS        00000000 020046 0036a7 00      0   0  1
+  [10] .debug_abbrev     PROGBITS        00000000 0236ed 000f37 00      0   0  1
+  [11] .debug_info       PROGBITS        00000000 024624 0121c5 00      0   0  1
+  [12] .debug_aranges    PROGBITS        00000000 0367e9 000bd0 00      0   0  1
+  [13] .debug_ranges     PROGBITS        00000000 0373b9 002018 00      0   0  1
+  [14] .debug_str        PROGBITS        00000000 0393d1 01bd34 01  MS  0   0  1
+  [15] .comment          PROGBITS        00000000 055105 000048 01  MS  0   0  1
+  [16] .ARM.attributes   ARM_ATTRIBUTES  00000000 05514d 000030 00      0   0  1
+  [17] .debug_frame      PROGBITS        00000000 055180 000d1c 00      0   0  4
+  [18] .debug_line       PROGBITS        00000000 055e9c 00632f 00      0   0  1
+  [19] .symtab           SYMTAB          00000000 05c1cc 001200 10     21 218  4
+  [20] .shstrtab         STRTAB          00000000 05d3cc 0000dd 00      0   0  1
+  [21] .strtab           STRTAB          00000000 05d4a9 001a76 00      0   0  1
+Key to Flags:
+  W (write), A (alloc), X (execute), M (merge), S (strings), I (info),
+  L (link order), O (extra OS processing required), G (group), T (TLS),
+  C (compressed), x (unknown), o (OS specific), E (exclude),
+  y (purecode), p (processor specific)
+```
+如上所示，可以看到中断向量表 `vector_table` 的地址为 `0x08000000` ,  `data` 段的起始地址为 `0x20000000` , 与 `memory.x` 定义的一致。
+
+```
+
+```

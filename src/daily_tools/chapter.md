@@ -3,6 +3,13 @@
 
 ## Cargo
 
+### 安装常用 Cargo 工具包
+
+```
+cargo install cargo-generate
+```
+
+
 ### 检查
 
 只检查 crate 语法，不编译，通常用来节省时间
@@ -50,6 +57,7 @@ TODO
 ext 3333
 ```
 
+[Overview of embedded programming and debugging - Debugonomicon (rust-embedded.org)](https://docs.rust-embedded.org/debugonomicon/)
 ## Probe-rs
 
 ### 查看支持的芯片清单

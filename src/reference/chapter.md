@@ -10,3 +10,5 @@
 [Embedded - Embedded Rust: The Cortex-M QuickStart Template](https://www.embedded.com/embedded-rust-the-cortex-m-quickstart-template/)
 
 [Embedded - Embedded Rust: Adding support for your target microcontroller](https://www.embedded.com/embedded-rust-adding-support-for-your-target-microcontroller/)
+
+[C++/Rust Interoperability Problem Statement]([interop-initiative/problem-statement.md at main · rustfoundation/interop-initiative (github.com)

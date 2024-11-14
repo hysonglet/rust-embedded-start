@@ -1,5 +1,5 @@
 
-# 环境
+# 快速搭建环境
 ## Rust 编译环境
 Rust 可以跨平台运行，支持 Windows/Linux/Mac 等主流系统。笔者推荐在 Mac或Linux 下学习和开发，效率更高。本书也主要介绍在 Mac/Linux 嵌入式常用工具和实践习惯。
 
@@ -79,7 +79,11 @@ xcode-select --install
 sudo apt-get update
 sudo apt-get install build-essential
 ```
-
+- 使用 cargo 克隆远程仓库，创建新的工程。
+```
+# 安装 generate 命令
+cargo install cargo-generate
+```
 
 ## 附录
 [Introduction - The rustup book (rust-lang.github.io)](https://rust-lang.github.io/rustup/index.html)

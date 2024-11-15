@@ -84,7 +84,7 @@ rustup target add thumbv6m-none-eabi
 
 创建的 工程可能与你的芯片并不完全匹配，因此你可能需要检查以下几个部分：
 
-1. 初步编译，可以正常通过，
+1. 初步编译，可以正常通过，但此时可能并不能在您的主板上运行正常。
 ```
 ➜  py32f030_hello_world_start git:(master) ✗ cargo b
     Updating crates.io index
@@ -265,6 +265,8 @@ index 7922596..dbeaf9c 100644
 ```
 6. 最后运行，下载完成后马上打印 `hello, world`。在此，你已经成功踏入了嵌入式 Rust 的小门。
 ``` bash
+
+
 ➜  py32f030_hello_world_start git:(main) ✗ cargo r
    Compiling py32f030_hello_world_start v0.1.0 (/Users/hunter/Desktop/tmp/tttttt/py32f030_hello_world_start)
     Finished `dev` profile [unoptimized + debuginfo] target(s) in 0.10s
@@ -318,7 +320,7 @@ Key to Flags:
   y (purecode), p (processor specific)
 ```
 2. Release 模式
-```
+``` bash
 ➜  py32f030_hello_world_start git:(main) ✗ cargo size --release
     Finished `release` profile [optimized + debuginfo] target(s) in 0.01s
    text	   data	    bss	    dec	    hex	filename

@@ -28,7 +28,6 @@
     - [快速体验](./develop/fast_start.md)
     - [深入理解 hello world 1](./develop/deep_dive_in_hello_world.md)
     - [深入理解 hello world 2](./develop/deep_dive_in_hello_world_2.md)
-    - [打印一个 hello world](./todo.md)
     - [位操作](./todo.md)
     - [LED](./todo.md)
     - [KEY](./todo.md)

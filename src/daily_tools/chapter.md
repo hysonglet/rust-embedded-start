@@ -6,9 +6,9 @@
 ### 安装常用 Cargo 工具包
 
 ```
+# 使用远程仓库模板创建工程
 cargo install cargo-generate
 ```
-
 
 ### 检查
 

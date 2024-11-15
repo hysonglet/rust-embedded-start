@@ -29,7 +29,13 @@ cargo run --example hello_world
 ```
 
 ## 实验结果
-TODO
-```
-TODO
+``` bash
+➜  py32f030-hal git:(main) ✗ cargo r --example hello_world
+warning: unused manifest key: dependencies.embedded-io-async.option
+    Finished `dev` profile [optimized + debuginfo] target(s) in 0.16s
+     Running `probe-rs run --chip PY32F030x8 target/thumbv6m-none-eabi/debug/examples/hello_world`
+      Erasing ✔ [00:00:00] [###############################################################] 12.00 KiB/12.00 KiB @ 92.09 KiB/s (eta 0s )
+  Programming ✔ [00:00:02] [##################################################################] 9.50 KiB/9.50 KiB @ 4.18 KiB/s (eta 0s )    Finished in 2.444s
+INFO  hello world
+└─ hello_world::__cortex_m_rt_main_fun @ examples/hello_world.rs:10
 ```

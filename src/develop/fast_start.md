@@ -17,14 +17,14 @@
 你需要获取开发版 Py32_Rust_dev 的 Rust 驱动包，里面有芯片的 Rust 外设驱动以及提供了丰富的学习例程。
 
 使用以下命令获取源码
-```
+``` bash
 git clone https://github.com/hysonglet/py32f030-hal.git
 ```
 
 ## 烧录和运行
 使用以下命令即可快速编译代码，并且烧录固件到芯片，然后可以在终端中看到 py32f030 的输出打印内容
 
-```
+``` bash
 cargo run --example hello_world
 ```
 

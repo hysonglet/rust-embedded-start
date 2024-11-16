@@ -52,7 +52,7 @@ Rust 交叉工具链的目标是由三元组组成，也叫目标三元组。
 
 在清楚对应的交叉编译起三元组名后，你需要使用命令安装它，如对于 Py32f030 芯片来说，内核是 `ARM Cortex-M0+` , 无浮点加速，因此需要安装 `thumbv6m-none-eabi` 
 
-```
+``` bash
 rustup target add thumbv6m-none-eabi
 ```
 其他常见 内核 的单片机与交叉编译器对应如下：
@@ -70,7 +70,7 @@ rustup target add thumbv6m-none-eabi
 
 基于模板创建新工程。使用命令：`cargo generate --git https://github.com/rust-embedded/cortex-m-quickstart`, 然后输入合适的工程名字即可。
 
-``` text
+``` bash
 ➜  tmp cargo generate --git https://github.com/rust-embedded/cortex-m-quickstart --name py32f030_hello_world_start
 🔧   Destination: /Users/hunter/Desktop/tmp/tmp/py32f030_hello_world_start ...
 🔧   project-name: py32f030_hello_world_start ...
@@ -85,7 +85,7 @@ rustup target add thumbv6m-none-eabi
 创建的 工程可能与你的芯片并不完全匹配，因此你可能需要检查以下几个部分：
 
 1. 初步编译，可以正常通过，但此时可能并不能在您的主板上运行正常。
-```
+``` bash
 ➜  py32f030_hello_world_start git:(master) ✗ cargo b
     Updating crates.io index
      Locking 31 packages to latest compatible versions
@@ -265,8 +265,6 @@ index 7922596..dbeaf9c 100644
 ```
 6. 最后运行，下载完成后马上打印 `hello, world`。在此，你已经成功踏入了嵌入式 Rust 的小门。
 ``` bash
-
-
 ➜  py32f030_hello_world_start git:(main) ✗ cargo r
    Compiling py32f030_hello_world_start v0.1.0 (/Users/hunter/Desktop/tmp/tttttt/py32f030_hello_world_start)
     Finished `dev` profile [unoptimized + debuginfo] target(s) in 0.10s

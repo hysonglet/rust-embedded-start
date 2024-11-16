@@ -5,7 +5,7 @@
 `py32f030-hal` crate 为 py32f030 芯片的外设支持库, 提供基本的外设访问接口。
 
 `py32f030-hal` crate 的目录结构如下：
-``` text
+``` bash
 ➜  py32f030-hal git:(main) ✗ tree -L 1
 .
 ├── Cargo.lock
@@ -106,7 +106,7 @@ halt_afterwards = true
 ### Examples
 该目录用来存放一些测试样例代码，如 blinky，uart 等，初学者可以通过运行这些测试代码来快速了解如何使用外设驱动，crate 根目录下直接执行： `cargo r --example expample_file_name`
 
-``` text
+``` bash
 ➜  py32f030-hal git:(main) ✗ tree -L 1 examples 
 examples
 ├── adc_block.rs
@@ -122,7 +122,7 @@ examples
 
 `memory.x` 文件用来指定芯片 RAM 和 Flash 等存储器的大小和地址，类似 C 中的链接脚本 `ld` 文件。在本 crate 中非必需，目前仅当使用 example 时才会用到该文件。在自己新建的 bin crate 工程中需要包含芯片对应 memory.x 文件。
 
-```
+``` text
 MEMORY
 {
   FLASH : ORIGIN = 0x08000000, LENGTH = 64K
@@ -136,7 +136,7 @@ MEMORY
 ### src
 
 `src` 目录为该库的源文件，通常在单片机外设库中，每个外设作为一个单独的模块。模块的根节点在 lib.rs 中，模块名即为包名，也就是 `py32f030_hal`。
-```
+``` bash
 ➜  py32f030-hal git:(main) ✗ tree -L 1 src     
 src
 ├── lib.rs
@@ -185,7 +185,7 @@ fn main_fun() -> ! {
 
 ## 编译
 通过命令：`cargo b --example hello_world` 编译程序。首次编译可能耗时较长。
-``` text
+``` bash
 ➜  py32f030-hal git:(main) ✗ cargo b --example hello_world
 warning: unused manifest key: dependencies.embedded-io-async.option
    Compiling proc-macro2 v1.0.85
@@ -267,7 +267,7 @@ warning: unused manifest key: dependencies.embedded-io-async.option
 - Release模式：`target/thumbv6m-none-eabi/debug/examples/hello_world`
 
 常使用size 命令查看 flash 和 ram 占用情况。
-```
+``` bash
 arm-none-eabi-size target/thumbv6m-none-eabi/debug/examples/hello_world 
    text    data     bss     dec     hex filename
    6344      56    1032    7432    1d08 target/thumbv6m-none-eabi/debug/examples/hello_world
@@ -334,7 +334,7 @@ Disassembly of section .text:
 ```
 
 细心的读者可以看到汇编的 main 函数里面最终调用了函数 `_ZN11hello_world22__cortex_m_rt_main_fun17h27b2c8ae827133dbE`, 与我们定义的
-```
+``` rust
 #[cortex_m_rt::entry]
 fn main_fun() -> ! 
 ```
@@ -350,7 +350,7 @@ Rust 源码编译后的函数和变量符号变化规律与C++相似，变量在
 
 通常使用 arm-none-eabi-readelf 命令查看编译后的固件的指令格式，大小端，CPU架构，段信息，如中断向量表的偏移、各信息段的大小，方便了解固件各段的具体大小，为优化固件大小提供重要信息。
 
-```
+``` bash
 ➜  py32f030-hal git:(main) ✗ arm-none-eabi-readelf target/thumbv6m-none-eabi/debug/examples/hello_world -A
 Attribute Section: aeabi
 File Attributes
@@ -370,7 +370,7 @@ File Attributes
   Tag_ABI_FP_16bit_format: IEEE 754
 ```
 
-```
+``` bash
 ➜  py32f030-hal git:(main) ✗ arm-none-eabi-readelf target/thumbv6m-none-eabi/debug/examples/hello_world -S
 There are 22 section headers, starting at offset 0x5ef20:
 

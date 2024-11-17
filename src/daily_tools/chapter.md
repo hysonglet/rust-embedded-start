@@ -52,6 +52,7 @@ cargo r --example blinky --release
 ## GDB
 
 用来调试单片机，查看或修改芯片内部数据
+[GDB 调试 Rust 嵌入式程序-以国产单片机为例](https://mp.weixin.qq.com/s/xPEa6lbgIghFrpBeDgdxSw)
 TODO
 ``` bash
 ext 3333
@@ -78,6 +79,17 @@ probe-rs attach
 ### 读写内存或寄存器
 
 ## 串口烧录
+
+
+## 串口助手
+### Mac
+[WCHSerialPort on the Mac App Store (apple.com)](https://apps.apple.com/tm/app/wchserialport/id1580700717?mt=12)
+![wchSerialPort(mac)](./images/wch_serial_port_mac.png)
+### Windows
+野人串口助手
+[UartAssist串口调试助手-软件工具-野人家园 (cmsoft.cn)](https://www.cmsoft.cn/resource/101.html)
+
+TODO
 
 ## 附录
 

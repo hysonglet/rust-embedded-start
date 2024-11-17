@@ -69,7 +69,7 @@ py32f030 内部比较简单，官方的资料也很完备，比较适合 Rust �
 ![Py32_Rust_Dev_1.1](img/board_3d.png "Py32_Rust_Dev_1")
 ## 其他
 
-如果安装环境或编译有报错，你可能需要使用以下命令安装一些工具
+如果安装环境或编译有报错，你可能需要使用以下命令安装一些工具, 详细请参考 [常用工具](../daily_tools/chapter.md)
 - 对于 Mac 系统如果没有安装 GCC 工具链
 ```bash
 xcode-select --install

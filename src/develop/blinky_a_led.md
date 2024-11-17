@@ -108,7 +108,6 @@ async fn main(spawner: Spawner) {
         Timer::after_secs(2).await;
     }
 }
-
 ```
 
 图片：TODO
@@ -127,3 +126,5 @@ async fn main(spawner: Spawner) {
 }
 ```
 6. `spawner.spawn()`: `spawn` 方法是将一个异步函数（或异步闭包）包装成一个任务，并将其放入异步执行器的任务调度队列中，以便在合适的时候执行。这个方法是异步执行器框架提供的关键接口，用于启动新的异步任务并将其纳入任务管理体系。
+7. `let _ = led.toggle();` 用于避免编译器报警，忽视 `led.toggle()` 的返回结果
+8. 在例程中实际会有 3 个任务运行

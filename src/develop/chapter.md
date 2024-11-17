@@ -8,7 +8,7 @@
 
 ##  [深入理解 hello world 例程——基于 cortex-m-quickstart](./deep_dive_in_hello_world_2.md)
 
-## 点个灯
+## [点个灯, 如此简单](./blinky_a_led.md)
 
 ## 多任务
 

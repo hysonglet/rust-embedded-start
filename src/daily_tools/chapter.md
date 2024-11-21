@@ -3,51 +3,11 @@
 
 ## Cargo
 
-### 安装常用 Cargo 工具包
+### Cargo
+- [Cargo](./cargo.md)
+- [svd2rust](./svd2rust.md)
+- [串口工具](./serial_tools.md)
 
-```
-# 使用远程仓库模板创建工程
-cargo install cargo-generate
-```
-
-### 检查
-
-只检查 crate 语法，不编译，通常用来节省时间
-```
-cargo check
-# or
-cargo c
-```
-
-### 编译
-
-编译 crate 或 指定的例程目标
-``` bash
-# 编译当前 crate
-cargo build
-# or
-cargo b
-# 编译 example 目录下的例程文件 XX
-cargo b --example XX
-# 以 release 模式编译例程 XX
-cargo b --example XX --release
-# 编译例程并使能 feature FFF
-cargo b --example XX --feature FFF
-```
-
-### 下载 & 运行
-
-下载 elf 固件到芯片并运行，probe-rs 会实时打印来自单片机的日志
-``` bash
-# 下载并运行
-cargo run
-# or
-cargo r
-# 以 release 模式运行
-cargo r --release
-# 运行 例程
-cargo r --example blinky --release
-```
 
 ## GDB
 
@@ -80,16 +40,6 @@ probe-rs attach
 
 ## 串口烧录
 
-
-## 串口助手
-### Mac
-[WCHSerialPort on the Mac App Store (apple.com)](https://apps.apple.com/tm/app/wchserialport/id1580700717?mt=12)
-![wchSerialPort(mac)](./images/wch_serial_port_mac.png)
-### Windows
-野人串口助手
-[UartAssist串口调试助手-软件工具-野人家园 (cmsoft.cn)](https://www.cmsoft.cn/resource/101.html)
-
-TODO
 
 ## 附录
 

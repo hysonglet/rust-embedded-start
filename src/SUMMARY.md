@@ -32,7 +32,7 @@
     - [按键检测，简单！](./develop/key.md)
     - [外部中断](./develop/exti.md)
     - [中断详解](./develop/interrupt.md)
-    - [串口通信](./todo.md)
+    - [串口通信](./develop/serial.md)
     - [I2C](./todo.md)
     - [SPI](./todo.md)
     - [DMA](./todo.md)

@@ -1,7 +1,7 @@
 
 # I2C
 
-I2C(Inter-IC Communication), 也是使用非常广泛的串行总线，只需要 SCL 和 CLK两根线即可，与 UART 串口不同的是， I2C 总线更加稳定，因为使用时钟线 CLK 用于同步收发双方的速度。
+I2C(Inter-IC Communication. IIC), 也是使用非常广泛的同步串行总线, 支持多控制器，多从设备的总线，只需要 SCL 和 CLK两根线即可，与 UART 串口不同的是， I2C 总线更加稳定，因为使用时钟线 CLK 用于同步收发双方的速度。
 
 I2C 总线支持一个主机并联多个从设备。通常使用拓扑如下：
 ![alt text](./images/i2c_bus.png)
@@ -9,6 +9,13 @@ I2C 总线支持一个主机并联多个从设备。通常使用拓扑如下：
 I2C 总线常用于板内设备通信，如M应用与CU与传感器、控制电路、屏幕等设备之间的通信。
 各从设备都具备一个 I2C 地址，且同一并联的总线不能有相同的地址。I2C 的时钟与数据线有着严格的时序要求。
 
+![I2C 时序](./images/i2c_timing.png)
+
+- 起始信号：SCLK保持高，SDA下降沿
+- 停止信号：SCLK保持高，SDA上升沿
+- 采集数据： SDA稳定，SCLK上升沿
+- ACK信号：
+- NACK信号：
 
 ## 示例:`examples/i2c_master_block.rs`
 ``` rust

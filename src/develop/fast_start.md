@@ -3,7 +3,7 @@
 学习新的语言，第一门课程当然是输出`hello world`。在这节你将能非常轻松得让单片机运行一段打印`hello wolrd` 的程序。
 
 ## 准备
-在阅读本文之前，如果您还没有配置基础的Rust 开发环境，您可跳转到：[环境搭建](../environment/chapter.md)
+在阅读本文之前，如果您还没有配置基础的Rust 开发环境，您可以阅读 [环境搭建](../environment/chapter.md)
 
 本文将基于主板 `Py32_Rust_Dev 1.1` 演示，在此前你需要准备基本的硬件设备如下
 - Py32_Rust_dev 1.1

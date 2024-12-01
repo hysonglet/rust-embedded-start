@@ -65,8 +65,14 @@ cargo r --release
 cargo r --example blinky --release
 ```
 
-#### 安装其他工具
+#### 模板创建工程
 ``` bash
 # 使用远程仓库模板创建工程
 cargo install cargo-generate
+```
+
+#### [固件分析工具](https://github.com/rust-embedded/cargo-binutils)
+``` bash
+cargo install cargo-binutils
+rustup component add llvm-tools-preview
 ```

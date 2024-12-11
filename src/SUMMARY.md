@@ -45,7 +45,7 @@
     - [Clock](./develop/clock.md)
     - [高级定时器](./develop/advance_timer.md)
     - [RTC](./develop/rtc.md)
-    - [ADC](./todo.md)
+    - [ADC](./develop/adc.md)
     - [Watchdog](./develop/iwatchdog.md)
     - [Flash](./todo.md)
     - [Embassy](./todo.md)

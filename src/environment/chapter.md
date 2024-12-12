@@ -9,7 +9,7 @@ Rust 提供了非常简单的安装命令, 详细可以参考：[Rust 官方入�
 ```bash
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 ```
-#### [Windows](https://static.rust-lang.org/rustup/dist/i686-pc-windows-gnu/rustup-init.exe)
+#### [Windows](./windows.md)
 Windows 下安装稍微麻烦点，具体可参考：[Windows]([MSVC prerequisites - The rustup book (rust-lang.github.io)](https://rust-lang.github.io/rustup/installation/windows-msvc.html))
 ### 设置 Rust night 版本
 Rust 的嵌入式开发环境需要是 nightly 版本
@@ -34,9 +34,7 @@ curl --proto '=https' --tlsv1.2 -LsSf https://github.com/probe-rs/probe-rs/relea
 ```
 
 在完成这一步后，如果顺利的话，你可以跳转到：[快速体验Rust 嵌入式](../develop/fast_start.md)
-## 仿真环境
 
-#### TODO
 ## 主控
 本教程使用的开发版为 `Py32_Rust_Dev_1.1`, 所采用的单片机为 `py32f030`, 目前该单片机在国内市场使用较为普遍，同时国外也有相当多的爱好者已经移植了开源的 Arduno 和 Rust。
 
@@ -75,14 +73,20 @@ py32f030 内部比较简单，官方的资料也很完备，比较适合 Rust �
 xcode-select --install
 ```
 - 对于 Linux 如 ubuntu/Deepin，可以安装一些常用嵌入式工具
-```bash
+``` bash
 sudo apt-get update
 sudo apt-get install build-essential
 ```
 - 使用 cargo 克隆远程仓库，创建新的工程。
-```
+``` bash
 # 安装 generate 命令
 cargo install cargo-generate
+```
+
+## 下载
+可使用 Jlink或Stlink用于下载和在线查看日志，在 `py32f030-hal` 库的根目录下运行
+``` bash
+cargo r --example XXX
 ```
 
 ## 附录

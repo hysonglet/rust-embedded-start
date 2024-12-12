@@ -20,6 +20,8 @@ ext 3333
 
 [Overview of embedded programming and debugging - Debugonomicon (rust-embedded.org)](https://docs.rust-embedded.org/debugonomicon/)
 ## Probe-rs
+Probe-rs 用于下载和调试固件，通常可使用 Jlink、Stlink、DapLink等工具下载。
+目前 `Py32 Rust Dev` 可使用 Jlink/Stlink 下载固件并打印 `defmt` 或 `RTT` 日志。在 demo 中直接使用`cargo r`等命令即可。
 
 ### 查看支持的芯片清单
 

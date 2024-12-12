@@ -12,7 +12,7 @@ GPIO 引脚可配置为输入或输出功能，也可复用为其他外设的功
 - 速度
 - IO模式
 
-当前外设支持库的 GPIO mod 提供了基本的API供使用:``
+当前外设支持库的 GPIO mod 提供了基本的API供使用:
 ``` rust
 //! General purpose input/output (GPIO) driver.
 //!

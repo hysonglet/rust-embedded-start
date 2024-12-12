@@ -7,6 +7,7 @@
     - [Rust 与 C/C++ 嵌入式的比较](./preface/compare.md)
     - [Rust 嵌入式的优势](./preface/advantage.md)
 - [快速搭建环境](./environment/chapter.md)
+    - [Windows](./environment/windows.md)
 - [常用工具](./daily_tools/chapter.md)
     - [Cargo](./daily_tools/cargo.md)
     - [svd2rust](./daily_tools/svd2rust.md)

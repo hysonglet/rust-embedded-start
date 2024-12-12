@@ -7,7 +7,7 @@
 
 本文将基于主板 `Py32_Rust_Dev 1.1` 演示，在此前你需要准备基本的硬件设备如下
 - Py32_Rust_dev 1.1
-- Jlink V9 + SWD 下载线
+- Jlink V9（或 Stlink V2）+ SWD 下载线
 需要准备的软件环境如下：
 - Rust (night)
 - thumbv6m-none-eabi

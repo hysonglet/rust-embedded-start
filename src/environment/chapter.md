@@ -31,6 +31,9 @@ rustup target add thumbv6m-none-eabi
 Probe-rs 是一个在Rust 嵌入式开发的常用软件工具，有下载固件到芯片，在线调试固件，打印运行日志、查看芯片内存等功能。
 ```bash
 curl --proto '=https' --tlsv1.2 -LsSf https://github.com/probe-rs/probe-rs/releases/latest/download/probe-rs-tools-installer.sh | sh
+
+cargo install cargo-binstall
+cargo binstall probe-rs-tools
 ```
 
 在完成这一步后，如果顺利的话，你可以跳转到：[快速体验Rust 嵌入式](../develop/fast_start.md)

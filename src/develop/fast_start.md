@@ -21,6 +21,25 @@
 git clone https://github.com/hysonglet/py32f030-hal.git
 ```
 
+## 测试代码
+``` rust
+#![no_std]
+#![no_main]
+
+use py32f030_hal as _;
+
+use {defmt_rtt as _, panic_probe as _};
+
+#[cortex_m_rt::entry]
+fn main_fun() -> ! {
+    defmt::info!("hello world");
+    loop {
+        cortex_m::asm::wfe();
+    }
+}
+
+```
+
 ## 烧录和运行
 使用以下命令即可快速编译代码，并且烧录固件到芯片，然后可以在终端中看到 py32f030 的输出打印内容
 

@@ -24,7 +24,7 @@ PY32F030 的内部有一个高级定时器TIM1，是一个16位可编程的定�
 
 ![alt text](./images/advance_timer.png)
 
-在驱动包 `py32f030-hal` 中，目前已实现常用的定时、PWM输出、中断等功能,扩展其他功能也非常简单。
+在驱动包 `py32f030-hal` 中，目前已实现常用的定时、PWM输出、中断等功能,扩展其他功能也非常简单。以下将提供裸机环境操作定时器以及多任务系统中操作定时器的例程。
 
 ## 示例1: 定时：`examples/advanced_timer_block.rs`
 ``` rust
@@ -62,6 +62,7 @@ fn main() -> ! {
     }
 }
 ```
+运行：`cargo r --example advanced_timer_block`
 
 ## 示例2: `examples/advanced_timer_block_2.rs`
 ``` rust
@@ -94,8 +95,10 @@ fn main() -> ! {
     }
 }
 ```
+运行：`cargo r --example advanced_timer_block_2`
 
 ## 示例3:PWM输出:`examples/embassy_pwm.rs`
+配置输出 PWM 波形
 ``` rust
 #![no_std]
 #![no_main]
@@ -175,3 +178,4 @@ async fn main(_spawner: Spawner) {
     }
 }
 ```
+运行： `cargo r --example embassy_pwm`

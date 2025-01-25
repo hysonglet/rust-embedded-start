@@ -6,7 +6,7 @@
 ## 硬件
 在 `Py32_Rust_dev_V1.1` 开发版中，LED 的相关原理图如下：
 
-![alt text](./images/image.png)
+![alt text](./images/serial.png)
 
 从图中可以看出，开发版有 2 个可以通过 GPIO 引脚控制的 LED，且这两个引脚与串口下载的电路复用。因此在点灯的同时可能会影响串口的正常工作，理论上是不能同时使用。
 

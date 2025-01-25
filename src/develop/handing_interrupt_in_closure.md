@@ -1,6 +1,24 @@
+# 在单片机中使用闭包优雅应对中断
+
+## 什么是闭包
+闭包这个词语由来已久，自上世纪 60 年代就由 Scheme 语言引进之后，被广泛用于函数式编程语言中，进入 21 世纪后，各种现代化的编程语言也都不约而同地把闭包作为核心特性纳入到语言设计中来。那么到底何为闭包？
+
+闭包是一种匿名函数，它可以赋值给变量也可以作为参数传递给其它函数，不同于函数的是，它允许捕获调用者作用域中的值，例如：
+
+``` rust
+fn main() {
+   let x = 1;
+   let sum = |y| x + y;
+
+    assert_eq!(3, sum(2));
+}
+```
+上面的代码展示了非常简单的闭包 `sum`，它拥有一个入参 y，同时捕获了作用域中的 x 的值，因此调用 sum(2) 意味着将 2（参数 y）跟 1（x）进行相加，最终返回它们的和：3。
+
+可以看到 `sum` 非常符合闭包的定义：可以赋值给变量，允许捕获调用者作用域中的值。
 
 # 使用闭包优雅处理中断
-这一章介绍如何使用闭包优雅处理中断。Rust 使用闭包处理中断的设计模式，目的是让中断处理更加及时、同时让 Rust 中的所有权检查能够顺利通过，也让API的使用更加简洁，符合人体工学设计。
+本篇文章将介绍如何使用闭包优雅处理中断。Rust 使用闭包处理中断的设计模式，目的是让中断处理更加及时、同时让 Rust 中的所有权检查能够顺利通过，也让API的使用更加简洁，符合人体工学设计，同时保证上层应用与底层逻辑的分离。
 
 ## 代码示例：`examples/adc_block_interrupt_closure.rs`
 ``` rust
@@ -169,3 +187,25 @@ pub fn register(closure: &'static mut Option<*const dyn Fn()>, f: Box<dyn Fn()>)
 }
  ```
  注册函数将会使用 Box 申请堆空间用于存储闭包逻辑，因此可在测试的 main 函数中看到设置堆区的初始化逻辑。要求堆的大小必须保证大于上层接口中的闭包所占用的空间大小。在注册新的闭包时，`register` 内部会管理旧的闭包，即释放旧的堆空间，读者可以尝试注释`let _ = alloc::boxed::Box::from_raw(old as *mut dyn Fn());` 后，多次调用 `on_interrupt` 即可。
+
+ ## 测试结果
+ 运行:`cargo r --example adc_block_interrupt_closure --no-default-features -F "example"`
+
+注意需要关闭默认的宏`embassy`, 在 `cargo r` 命令后添加 `--no-default-features` 即可
+ ``` bash
+      Erasing ✔ [00:00:00] [#######################################################################] 16.00 KiB/16.00 KiB @ 193.12 KiB/s (eta 0s )
+  Programming ✔ [00:00:01] [#######################################################################] 13.75 KiB/13.75 KiB @ 8.18 KiB/s (eta 0s )    Finished in 1.784s
+INFO  8000000
+└─ adc_block_interrupt_closure::__cortex_m_rt_main::{closure#0} @ examples/adc_block_interrupt_closure.rs:35
+INFO  adc "[0, 1441, 2170, 1394, 2243, 1446, 2172, 1399, 2251, 1442, 2182, 1412, 2261, 0, 0, 0]" sum: 1441 avrage: 1133
+└─ adc_block_interrupt_closure::__cortex_m_rt_main::{closure#0} @ examples/adc_block_interrupt_closure.rs:78
+INFO  adc "[2210, 1426, 2278, 1370, 2220, 1429, 2258, 1380, 2228, 1435, 2182, 1412, 2261, 1428, 2278, 1362]" sum: 26881 avrage: 1820
+└─ adc_block_interrupt_closure::__cortex_m_rt_main::{closure#0} @ examples/adc_block_interrupt_closure.rs:78
+INFO  adc "[2268, 1456, 2180, 1402, 2256, 1408, 2202, 1418, 2274, 1367, 2203, 1419, 2278, 1363, 2212, 1430]" sum: 29056 avrage: 1819
+└─ adc_block_interrupt_closure::__cortex_m_rt_main::{closure#0} @ examples/adc_block_interrupt_closure.rs:78
+
+ ```
+
+ ## 引用
+ [Rust语言圣经(Rust Course)](https://course.rs/advance/functional-programing/closure.html)
+ [py32f030-hal](https://github.com/hysonglet/py32f030-hal)

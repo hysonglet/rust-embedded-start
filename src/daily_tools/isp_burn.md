@@ -10,10 +10,11 @@ Py32_Rust_Dev 主板支持串口烧录,只需要连接 Type-C 到电脑即可。
 该工具用于串口烧录 bin 文件到 Py32F030 芯片。
 
 
-## 获取源码 及安装到cargo 路径
+## 获取源码 及安装到 cargo 路径
 ``` bash
 git clone https://github.com/hysonglet/pyisp.git
 cd pyisp
+# 安装可执行 pyisp 命令到 cargo
 cargo install --path .
 ```
 
@@ -37,3 +38,5 @@ pyisp -s tty.usbserial-130 -f tttt.bin -g -c
 2. 按下 `reset` 键（保持boot键按下状态）
 3. 释放 `reset` 键
 4. 0.5 秒后释放 `boot` 键
+
+1.3 主板下载只需按 boot 键即可，无需再按 reset 按键

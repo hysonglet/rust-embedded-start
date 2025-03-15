@@ -5,7 +5,7 @@ Py32_Rust_Dev 主板支持串口烧录,只需要连接 Type-C 到电脑即可。
 ![alt text](./images/usb_board.png)
 
 
-# Pyisp
+# [Pyisp](https://github.com/hysonglet/pyisp)
 
 该工具用于串口烧录 bin 文件到 Py32F030 芯片。
 

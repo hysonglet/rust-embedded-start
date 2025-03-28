@@ -11,6 +11,10 @@ curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 ```
 #### [Windows](./windows.md)
 Windows 下安装稍微麻烦点，具体可参考：[Windows]([MSVC prerequisites - The rustup book (rust-lang.github.io)](https://rust-lang.github.io/rustup/installation/windows-msvc.html))
+
+#### 提醒
+如果您目前只是学习Rust语法，那么可以暂时忽略以下的工具的安装，当后期需要编译和运行 Rust 单片机代码时候，您可继续安装以下工具。
+
 ### 设置 Rust night 版本
 Rust 的嵌入式开发环境需要是 nightly 版本
 ```bash
@@ -21,7 +25,7 @@ rustup default nightly
 ```bash
 rustup target list
 ```
-通常来说，对于不同的芯片厂商，只要芯片内核相同，都可以使用相同的编译链，无需再额外配置hrjk。
+通常来说，对于不同的芯片厂商，只要芯片内核相同，都可以使用相同的编译链，无需再额外配置环境。
 ### 安装 Cortex-M0 编译工具(Py32_Rust_Dev_1.1)
 ```bash
 rustup target add thumbv6m-none-eabi
@@ -90,6 +94,16 @@ cargo install cargo-generate
 可使用 Jlink或Stlink用于下载和在线查看日志，在 `py32f030-hal` 库的根目录下运行
 ``` bash
 cargo r --example XXX
+```
+
+## 生成其他格式的固件
+``` bash
+# 编译并生成bin文件
+cargo objcopy --example embassy_allpin -- -O binary embassy_allpin.bin
+# 编译并生成 hex文件
+cargo objcopy --example blinky -- -O ihex blinky.hex
+# 编译并将elf文件自动转换成汇编
+cargo objdump --example blinky -- -D > blinky.asm
 ```
 
 ## 附录

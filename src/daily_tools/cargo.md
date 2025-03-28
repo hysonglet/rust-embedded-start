@@ -73,6 +73,7 @@ cargo install cargo-generate
 
 #### [固件分析工具](https://github.com/rust-embedded/cargo-binutils)
 ``` bash
+# 这个工具包将提供一些便捷的 objdump, objcopy, objsize 等命令。通常在生成bin文件或者分析固件时候非常有用
 cargo install cargo-binutils
 rustup component add llvm-tools-preview
 ```

@@ -77,7 +77,9 @@ fn main() -> ! {
 ```
 
 ## 参考
-
+- [主仓库](https://github.com/hysonglet/py32f030-hal)
+- [原理图](https://github.com/hysonglet/Py32F030_CrabBoard_Hardware)
+- [教程](https://hysonglet.github.io/rust-embedded-start/)
 - [I2C总线该怎么用？看完你就会了](https://mp.weixin.qq.com/s/IeL77NTyVdTdkcNtqjjFPA)
 - [I2C总线协议](https://zhenhuizhang.tk/post/dian-lu-i2c-zong-xian-xie-yi/)
 - [I2C](https://learn.sparkfun.com/tutorials/i2c/all)

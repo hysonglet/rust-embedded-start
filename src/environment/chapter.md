@@ -2,12 +2,16 @@
 # 快速搭建环境
 ## Rust 编译环境
 Rust 可以跨平台运行，支持 Windows/Linux/Mac 等主流系统。笔者推荐在 Mac或Linux 下学习和开发，效率更高。本书也主要介绍在 Mac/Linux 嵌入式常用工具和实践习惯。
-
 Rust 提供了非常简单的安装命令, 详细可以参考：[Rust 官方入门手册](https://doc.rust-lang.org/book/)
 详细请参考： [Installation - The Rust Programming Language (rust-lang.org)](https://doc.rust-lang.org/book/ch01-01-installation.html)
 #### Mac/Linux
 ```bash
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+```
+国内环境如果因为网速问题，可能会下载失败，可以先执行以下命令尝试切换清华的镜像源，然后执行以上安装命令。
+```bash
+export RUSTUP_DIST_SERVER=https://mirrors.tuna.tsinghua.edu.cn/rustup
+export RUSTUP_UPDATE_ROOT=https://mirrors.tuna.tsinghua.edu.cn/rustup/rustup
 ```
 #### [Windows](./windows.md)
 Windows 下安装稍微麻烦点，具体可参考：[Windows]([MSVC prerequisites - The rustup book (rust-lang.github.io)](https://rust-lang.github.io/rustup/installation/windows-msvc.html))

@@ -264,7 +264,7 @@ warning: unused manifest key: dependencies.embedded-io-async.option
 编译完成后生成的 elf 文件路径为：
 - Debug模式: `target/thumbv6m-none-eabi/debug/examples/hello_world`
 
-- Release模式：`target/thumbv6m-none-eabi/debug/examples/hello_world`
+- Release模式：`target/thumbv6m-none-eabi/release/examples/hello_world`
 
 常使用size 命令查看 flash 和 ram 占用情况。
 ``` bash

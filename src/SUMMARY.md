@@ -47,6 +47,7 @@
     - [CRC校验](./develop/crc.md)
     - [Clock](./develop/clock.md)
     - [高级定时器](./develop/advance_timer.md)
+    - [PWM播放MIDI音乐](./develop/pwm播放MIDI音乐.md)
     - [RTC](./develop/rtc.md)
     - [ADC](./develop/adc.md)
     - [Watchdog](./develop/iwatchdog.md)

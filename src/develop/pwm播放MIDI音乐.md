@@ -285,5 +285,5 @@ text    data     bss     dec     hex filename
 + midi频率表：[https://newt.phys.unsw.edu.au/jw/notes.html](https://newt.phys.unsw.edu.au/jw/notes.html)
 
 ## 已发布
-- [如何使用Rust控制单片机播放MIDI音乐：超简单]https://mp.weixin.qq.com/s/dUTGaVomkYY6-fp6CyW5TQ
+- [如何使用Rust控制单片机播放MIDI音乐：超简单](https://mp.weixin.qq.com/s/dUTGaVomkYY6-fp6CyW5TQ)
 

@@ -12,6 +12,7 @@
     - [pyisp](./daily_tools/isp_burn.md)
     - [Cargo](./daily_tools/cargo.md)
     - [svd2rust](./daily_tools/svd2rust.md)
+    - [推荐插件](./daily_tools/recommend.md)
     - [串口工具](./daily_tools/serial_tools.md)
     - [vscode](./daily_tools/vscode.md)
     - [zed](./daily_tools/zed.md)

@@ -21,6 +21,7 @@
     - [数据类型](./rust_grammar/data_type.md)
 	- [位操作](./rust_grammar/bit_option.md)
     - [结构体](./rust_grammar/struct.md)
+    - [Rust 与 C 的结构体的差异](./rust_grammar/struct_diffrent.md)
     - [枚举](./rust_grammar/enum.md)
     - [判断](./rust_grammar/if_else.md)
     - [模式匹配](./rust_grammar/match.md)
